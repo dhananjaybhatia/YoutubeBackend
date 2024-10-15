@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/stylesheets/style.css" />
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <title>Document</title>
+  </head>
+  <body>
+    <div class="w-full h-full bg-zinc-900 p-10 text-white">
+      <div class="text-xl text-blue-500 mb-10">
+        <a href="/">Create Users</a>
+      </div>
+      <h1 class="text-3xl tracking-tighter mb-3">All Users</h1>
+      <div class="users flex flex-wrap gap-5">
+        <!-- User Card 1 -->
+        <% if (users.length > 0) { %>
+          <% users.forEach(user => { %>
+            <div class="max-w-sm w-full p-4 bg-zinc-700 rounded-lg">
+              <div class="w-full h-52 rounded-lg overflow-hidden">
+                <img class="w-full h-full object-cover" src="<%= user.image %>" alt="User Image">
+              </div>
+              <h3 class="text-2xl mt-3 mb-0 tracking-tighter border-b-2 border-zinc-600 pb-2">
+                <%= user.name %> <!-- User Name -->
+              </h3>
+              <h2 class="text-xl text-zinc-400 mt-3 mb-0 tracking-tighter">
+                <%= user.email %> <!-- User Email -->
+              </h2>
+              <div class="flex gap-3 mt-5">
+                <a class="bg-yellow-500 rounded-lg p-3" href="/edit/<%= user._id %>">Edit</a>
+                <a class="bg-red-500 rounded-lg p-3" href="/delete/<%= user._id %>" onclick="return confirm('Are you sure you want to delete this user?');">Delete</a>
+              </div>
+            </div>
+          <% }) %>
+        <% } else { %>
+          <p class="text-red-800 text-3xl">No Users to Show!!</p>
+        <% } %>
+        
+        
+        </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
